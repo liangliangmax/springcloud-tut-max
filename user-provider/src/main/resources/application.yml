@@ -9,7 +9,12 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
 
-#可以关闭密码保护
+#由于feign内置了hystrix功能，所以这里加一个配置即可
+feign:
+  hystrix:
+    enabled: true
+
+#可以关闭密码保护，如果不配置这个值的话访问localhost:8080/info是不会有任何内容的
 management:
   security:
     enabled: false

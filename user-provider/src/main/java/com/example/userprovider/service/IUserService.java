@@ -5,9 +5,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient("micro-service")
+@FeignClient(value = "micro-service",fallback = UserServiceHystrix.class)
 public interface IUserService {
 
     @RequestMapping(value="/api/student/user/{id}/{username}",method = RequestMethod.GET)
     String findById(@RequestParam("id") String id,@RequestParam("username") String username);
+
+
 }

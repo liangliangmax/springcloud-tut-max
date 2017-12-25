@@ -8,7 +8,6 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 @SpringBootApplication
 @EnableEurekaClient //启动EnableEureka客户端
 @EnableAutoConfiguration
-
 public class MicroserviceApplication {
 
 	public static void main(String[] args) {
