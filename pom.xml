@@ -14,8 +14,8 @@
         <module>config</module>
         <module>eureka-center</module>
         <module>user-provider</module>
-        <module>good-provider</module>
-
+        <module>hystrix-dashboard-turbine</module>
+        <module>product-provider</module>
     </modules>
 
     <parent>
