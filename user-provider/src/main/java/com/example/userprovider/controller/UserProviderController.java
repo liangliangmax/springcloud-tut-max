@@ -1,5 +1,6 @@
 package com.example.userprovider.controller;
 
+import com.example.entity.User;
 import com.example.userprovider.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,15 +9,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/student")
 public class UserProviderController {
 
     @Autowired
     private IUserService userService;
 
-    @RequestMapping("/{id}/{username}")
-    public String findById(@PathVariable("id") String id,@PathVariable("username") String username){
+    @RequestMapping("/{id}")
+    public String findById(@PathVariable("id") String id){
 
-        return userService.findById(id,username);
+        return userService.findById(id);
+    }
+
+    @RequestMapping("/username/{username}")
+    public String findByUsername(@PathVariable("username") String username){
+
+        return userService.findByUsername(username);
+    }
+
+    @RequestMapping("/all")
+    public String findAll(){
+        return userService.findALl();
+    }
+
+    @RequestMapping("/add")
+    public void add(User user){
+
     }
 }

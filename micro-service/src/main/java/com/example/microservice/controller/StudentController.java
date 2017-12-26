@@ -1,30 +1,49 @@
 package com.example.microservice.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.example.microservice.entity.User;
+import com.example.entity.User;
+import com.example.microservice.service.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api/student")
+@RequestMapping("/api")
 public class StudentController {
 
-    @RequestMapping("/user/{id}/{username}")
-    public String findById(@PathVariable("id")  String id,@PathVariable("username") String username){
+    @Autowired
+    private IUserService userService;
 
-        User user1=new User();
+    @RequestMapping("/student/{id}")
+    public String findById(@PathVariable("id")  String id){
 
-        user1.setId(id);
-        user1.setUsername(username);
-        user1.setPassword("123456");
+        System.out.println("开始查询");
 
-        return JSONObject.toJSONString(user1);
+        User user= userService.findById(id);
 
+        return JSONObject.toJSONString(user);
 
+    }
 
+    @RequestMapping("/student/username/{username}")
+    public String findByUsername(@PathVariable("username") String username){
+
+        User user=userService.selectByUsername(username);
+
+        return JSONObject.toJSONString(user);
+
+    }
+
+    @RequestMapping("/student/all")
+    public String findAll(){
+
+        List<User> list = userService.findAll();
+
+        return JSONObject.toJSONString(list);
     }
 }

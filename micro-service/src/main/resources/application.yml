@@ -1,6 +1,24 @@
 spring:
   application:
     name: micro-service
+
+  datasource:
+      url: jdbc:mysql://172.16.62.167:3306/sec_test?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&createDatabaseIfNotExist=true
+      username: root
+      password: root
+      driver-class-name: com.mysql.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
+      druid:
+            max-active: 20
+            initial-size: 10
+            min-idle: 3
+            max-wait: 60000
+            time-between-eviction-runs-millis: 60000
+            min-evictable-idle-time-millis: 300000
+            test-while-idle: true
+            test-on-borrow: false
+            test-on-return: false
+            validationQuery: SELECT 1 FROM DUAL
 server:
   port: 8080
 

@@ -1,7 +1,15 @@
-package com.example.microservice.entity;
+package com.example.entity;
 
-public class User {
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
 
+@Table(name = "user")
+public class User implements Serializable{
+
+    @Id
+    @GeneratedValue(generator = "UUID")
     private String id;
 
     private String username;

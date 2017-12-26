@@ -16,6 +16,7 @@
         <module>user-provider</module>
         <module>hystrix-dashboard-turbine</module>
         <module>product-provider</module>
+        <module>micro-common</module>
     </modules>
 
     <parent>
