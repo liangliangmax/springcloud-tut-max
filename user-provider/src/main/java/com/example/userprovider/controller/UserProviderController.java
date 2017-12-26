@@ -32,12 +32,22 @@ public class UserProviderController {
         return userService.findALl();
     }
 
+    /**
+     * 这里的user可以自动映射
+     * @param user
+     * @return
+     */
     @RequestMapping(value = "/add",method = RequestMethod.POST)
     public int add(User user){
         return userService.add(user);
 
     }
 
+    /**
+     * 这里的map必须使用@RequestParam去修饰一下，否则接受不到
+     * @param params
+     * @return
+     */
     @RequestMapping(value = "/page",method = RequestMethod.POST)
     public String findByPage(@RequestParam Map<String,Object> params){
         return userService.findByPage(params);

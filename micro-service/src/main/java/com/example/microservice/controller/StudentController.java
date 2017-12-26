@@ -51,7 +51,7 @@ public class StudentController {
         return userService.add(user);
     }
 
-    @RequestMapping(value = "/student/page")
+    @RequestMapping(value = "/student/page",method = RequestMethod.POST)
     public String findByPage(@RequestBody Map<String,Object> params){
 
         List<User> list = userService.findByPage(params);

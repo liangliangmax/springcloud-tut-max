@@ -25,6 +25,6 @@ public interface IUserService {
     int add(@RequestBody User user);
 
     @RequestMapping(value = "/api/student/page",method = RequestMethod.POST,consumes = "application/json", produces = "application/json")
-    String findByPage(Map<String,Object> params);
+    String findByPage(@RequestBody Map<String,Object> params);
 
 }
