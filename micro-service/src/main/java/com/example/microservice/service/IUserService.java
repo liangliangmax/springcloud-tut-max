@@ -11,4 +11,6 @@ public interface IUserService {
     User selectByUsername(String username);
 
     List<User> findAll();
+
+    int add(User user);
 }

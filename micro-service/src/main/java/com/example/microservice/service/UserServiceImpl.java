@@ -30,4 +30,9 @@ public class UserServiceImpl implements IUserService{
     public List<User> findAll() {
         return userMapper.selectAll();
     }
+
+    @Override
+    public int add(User user) {
+        return userMapper.insert(user);
+    }
 }

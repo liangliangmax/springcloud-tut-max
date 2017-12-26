@@ -4,9 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.entity.User;
 import com.example.microservice.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -45,5 +43,11 @@ public class StudentController {
         List<User> list = userService.findAll();
 
         return JSONObject.toJSONString(list);
+    }
+
+    @RequestMapping(value = "/student/add",method = RequestMethod.POST)
+    public int add(@RequestBody User user){
+
+        return userService.add(user);
     }
 }

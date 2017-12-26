@@ -1,6 +1,8 @@
 package com.example.userprovider.service;
 
+import com.example.entity.User;
 import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,5 +18,8 @@ public interface IUserService {
 
     @RequestMapping(value = "/api/student/all",method = RequestMethod.GET)
     String findALl();
+
+    @RequestMapping(value = "/api/student/add",method = RequestMethod.POST,consumes = "application/json", produces = "application/json")
+    int add(@RequestBody User user);
 
 }

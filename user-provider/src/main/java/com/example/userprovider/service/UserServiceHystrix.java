@@ -1,5 +1,6 @@
 package com.example.userprovider.service;
 
+import com.example.entity.User;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,5 +19,10 @@ public class UserServiceHystrix implements IUserService{
     @Override
     public String findALl() {
         return "sorry , network not worked";
+    }
+
+    @Override
+    public int add(User user) {
+        return -1;
     }
 }
