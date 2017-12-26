@@ -17,7 +17,7 @@ public class StudentController {
     @Autowired
     private IUserService userService;
 
-    @RequestMapping("/student/{id}")
+    @RequestMapping(value = "/student/{id}",method = RequestMethod.GET)
     public String findById(@PathVariable("id")  String id){
 
         System.out.println("开始查询");
@@ -28,7 +28,7 @@ public class StudentController {
 
     }
 
-    @RequestMapping("/student/username/{username}")
+    @RequestMapping(value = "/student/username/{username}",method = RequestMethod.GET)
     public String findByUsername(@PathVariable("username") String username){
 
         User user=userService.selectByUsername(username);
@@ -37,7 +37,7 @@ public class StudentController {
 
     }
 
-    @RequestMapping("/student/all")
+    @RequestMapping(value = "/student/all",method = RequestMethod.GET)
     public String findAll(){
 
         List<User> list = userService.findAll();
@@ -49,5 +49,12 @@ public class StudentController {
     public int add(@RequestBody User user){
 
         return userService.add(user);
+    }
+
+    @RequestMapping(value = "/student/page")
+    public String findByPage(@RequestBody Map<String,Object> params){
+
+        List<User> list = userService.findByPage(params);
+        return JSONObject.toJSONString(list);
     }
 }

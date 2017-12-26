@@ -3,10 +3,12 @@ package com.example.microservice.service;
 
 import com.example.entity.User;
 import com.example.microservice.mapper.UserMapper;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements IUserService{
@@ -34,5 +36,18 @@ public class UserServiceImpl implements IUserService{
     @Override
     public int add(User user) {
         return userMapper.insert(user);
+    }
+
+    @Override
+    public List<User> findByPage(Map<String, Object> params) {
+
+        int pageNum=Integer.parseInt(params.get("pageNum")+"");
+        int pageSize=Integer.parseInt(params.get("pageSize")+"");
+
+        PageHelper.startPage(pageNum,pageSize);
+
+        List<User> list=userMapper.selectAll();
+
+        return list;
     }
 }

@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Map;
+
 @FeignClient(value = "micro-service",fallback = UserServiceHystrix.class)
 public interface IUserService {
 
@@ -21,5 +23,8 @@ public interface IUserService {
 
     @RequestMapping(value = "/api/student/add",method = RequestMethod.POST,consumes = "application/json", produces = "application/json")
     int add(@RequestBody User user);
+
+    @RequestMapping(value = "/api/student/page",method = RequestMethod.POST,consumes = "application/json", produces = "application/json")
+    String findByPage(Map<String,Object> params);
 
 }

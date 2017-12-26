@@ -3,6 +3,8 @@ package com.example.userprovider.service;
 import com.example.entity.User;
 import org.springframework.stereotype.Component;
 
+import java.util.Map;
+
 @Component
 public class UserServiceHystrix implements IUserService{
 
@@ -24,5 +26,10 @@ public class UserServiceHystrix implements IUserService{
     @Override
     public int add(User user) {
         return -1;
+    }
+
+    @Override
+    public String findByPage(Map<String, Object> params) {
+        return "分页失败";
     }
 }
