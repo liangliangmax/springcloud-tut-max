@@ -22,4 +22,12 @@ public class ProductController {
         return JSONObject.toJSONString(product);
 
     }
+
+
+    @RequestMapping("/prod/{id}")
+    public String selectById(@PathVariable("id") String id){
+        Product product = productService.selectById(id);
+
+        return JSONObject.toJSONString(product);
+    }
 }

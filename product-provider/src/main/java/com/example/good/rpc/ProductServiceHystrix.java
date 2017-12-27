@@ -8,4 +8,9 @@ public class ProductServiceHystrix implements IProductService{
     public String findById(String id) {
         return "wa oh,the network not work";
     }
+
+    @Override
+    public String selectById(String id) {
+        return "wa oh,the network not work";
+    }
 }

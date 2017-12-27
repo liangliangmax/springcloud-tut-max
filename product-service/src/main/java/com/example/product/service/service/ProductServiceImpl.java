@@ -11,8 +11,23 @@ public class ProductServiceImpl implements IProductService{
     @Autowired
     private ProductMapper productMapper;
 
+    /**
+     * 本方法调用传统的mybatis的接口文件
+     * @param id
+     * @return
+     */
     @Override
     public Product findById(String id) {
         return productMapper.findById(id);
+    }
+
+    /**
+     * 本方法测试tkmybatis
+     * @param id
+     * @return
+     */
+    @Override
+    public Product selectById(String id) {
+        return productMapper.selectByPrimaryKey(id);
     }
 }

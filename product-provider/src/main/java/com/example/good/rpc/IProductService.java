@@ -10,4 +10,7 @@ public interface IProductService {
 
     @RequestMapping(value="/api/product/{id}",method = RequestMethod.GET)
     String findById(@RequestParam("id") String id);
+
+    @RequestMapping(value="/api/prod/{id}",method = RequestMethod.GET)
+    String selectById(@RequestParam("id") String id);
 }

@@ -21,4 +21,10 @@ public class ProductProviderController {
     }
 
 
+    @RequestMapping("/jar/{id}")
+    public String selectById(@PathVariable("id") String id){
+
+        return productService.selectById(id);
+
+    }
 }
