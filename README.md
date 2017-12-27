@@ -14,15 +14,15 @@
 
 --------------------------------
 本示例中模拟了mybatis的夸jar包扫描mapper.xml文件
-micro-service为微服务，product-service模拟别的jar包中的mapper.xml，product-provider为给页面提供数据的层
-关系为product-provider调用micro-service，micro-service中注入product-service
+micro-service为微服务，product-mapper模拟别的jar包中的mapper.xml，product-provider为给页面提供数据的层
+关系为product-provider调用micro-service，micro-service中注入product-mapper
 
-想要在micro-service中注入product-service，需要在micro-service的的启动类上添加以下两个注解
+想要在micro-service中注入product-mapper，需要在micro-service的的启动类上添加以下两个注解
 @MapperScan({"com.example.microservice.mapper","com.example.product.service.mapper"})
 @ComponentScan({"com.example.product.service","com.example.microservice"})
 就是将自己包下的mapper文件扫描进去，然后把product里面的mapper也扫描进去，如果不扫描则注入失败。
 
-在product-service中是不需要配置文件的，只需要放入mapper接口和实现xml即可。
+在product-mapper中是不需要配置文件的，只需要放入mapper接口和实现xml即可。
 
 在micro-service的DataSourceConfig文件中需要注意一个地方
 bean.setMapperLocations(resolver.getResources("classpath*:mapper/*.xml"));

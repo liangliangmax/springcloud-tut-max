@@ -17,7 +17,7 @@
         <module>hystrix-dashboard-turbine</module>
         <module>product-provider</module>
         <module>micro-api</module>
-        <module>product-service</module>
+        <module>product-mapper</module>
     </modules>
 
     <parent>
