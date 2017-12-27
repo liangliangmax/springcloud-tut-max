@@ -2,7 +2,7 @@ package com.example.microservice.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.entity.Product;
-import com.example.product.service.service.IProductService;
+import com.example.microservice.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

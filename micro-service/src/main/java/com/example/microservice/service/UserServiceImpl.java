@@ -6,6 +6,7 @@ import com.example.microservice.mapper.UserMapper;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -34,6 +35,7 @@ public class UserServiceImpl implements IUserService{
     }
 
     @Override
+    @Transactional
     public int add(User user) {
         return userMapper.insert(user);
     }

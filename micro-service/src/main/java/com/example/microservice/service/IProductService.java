@@ -1,4 +1,4 @@
-package com.example.product.service.service;
+package com.example.microservice.service;
 
 
 import com.example.entity.Product;
