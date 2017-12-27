@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(value = "micro-service",fallback = ProductServiceHystrix.class)
 public interface IProductService {
 
-    @RequestMapping(value="/api/product/prod/{id}/{productName}",method = RequestMethod.GET)
-    String findById(@RequestParam("id") String id, @RequestParam("productName") String productName);
+    @RequestMapping(value="/api/product/{id}",method = RequestMethod.GET)
+    String findById(@RequestParam("id") String id);
 }

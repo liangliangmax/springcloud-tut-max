@@ -60,7 +60,7 @@
 
 		<dependency>
 			<groupId>com.liang</groupId>
-			<artifactId>micro-common</artifactId>
+			<artifactId>micro-api</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
 

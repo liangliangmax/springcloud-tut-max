@@ -1,8 +1,7 @@
-package com.example.microservice.config;
+package com.example.product.service.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import com.github.pagehelper.PageHelper;
-import org.apache.ibatis.io.VFS;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -11,7 +10,6 @@ import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
-import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -28,7 +26,7 @@ import java.util.Properties;
  */
 @Configuration
 @EnableTransactionManagement
-public class DataSourceConfig implements EnvironmentAware {
+public class ProductServiceDataSourceConfig implements EnvironmentAware {
 
     private RelaxedPropertyResolver propertyResolver;
 
@@ -61,8 +59,6 @@ public class DataSourceConfig implements EnvironmentAware {
     //提供SqlSeesion
     @Bean
     public SqlSessionFactory sqlSessionFactoryBean() throws Exception {
-        //解决myBatis下 不能嵌套jar文件的问题
-        VFS.addImplClass(SpringBootVFS.class);
 
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
 
@@ -82,11 +78,9 @@ public class DataSourceConfig implements EnvironmentAware {
         //添加分页插件
         bean.setPlugins(new Interceptor[]{pageHelper});
 
-
-        //这里涉及到夸jar包扫描，写成classpath*就可以
         ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         try {
-            bean.setMapperLocations(resolver.getResources("classpath*:mapper/*.xml"));//扫描mapper.xml文件
+            bean.setMapperLocations(resolver.getResources("classpath:mapper/*.xml"));//扫描mapper.xml文件
             return bean.getObject();
         } catch (Exception e) {
             e.printStackTrace();

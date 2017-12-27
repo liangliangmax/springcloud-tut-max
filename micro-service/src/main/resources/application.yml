@@ -19,6 +19,7 @@ spring:
             test-on-borrow: false
             test-on-return: false
             validationQuery: SELECT 1 FROM DUAL
+
 server:
   port: 8080
 

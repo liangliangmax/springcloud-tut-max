@@ -1,22 +1,23 @@
 package com.example.microservice.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.example.microservice.entity.Product;
+import com.example.entity.Product;
+import com.example.product.service.service.IProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/product")
+@RequestMapping("/api")
 public class ProductController {
 
-    @RequestMapping("/prod/{id}/{productName}")
-    public String findById(@PathVariable("id") String id, @PathVariable("productName") String productName){
-        Product product=new Product();
+    @Autowired
+    private IProductService productService;
 
-        product.setId(id);
-        product.setProductName(productName);
-        product.setPrice("10000");
+    @RequestMapping("/product/{id}")
+    public String findById(@PathVariable("id") String id){
+        Product product = productService.findById(id);
 
         return JSONObject.toJSONString(product);
 

@@ -158,7 +158,7 @@
     <orderEntry type="library" name="Maven: org.webjars:jquery:2.1.1" level="project" />
     <orderEntry type="library" name="Maven: org.webjars:d3js:3.4.11" level="project" />
     <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.44" level="project" />
-    <orderEntry type="module" module-name="micro-common" />
+    <orderEntry type="module" module-name="micro-api" />
     <orderEntry type="library" name="Maven: javax.persistence:persistence-api:1.0.2" level="project" />
   </component>
 </module>

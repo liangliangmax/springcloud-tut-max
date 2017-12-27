@@ -1,7 +1,14 @@
-package com.example.microservice.entity;
+package com.example.entity;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Table(name = "product")
 public class Product {
 
+    @Id
+    @GeneratedValue(generator = "UUID")
     private String id;
 
     private String productName;

@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/product")
-public class GoodProviderController {
+public class ProductProviderController {
 
     @Autowired
     private IProductService productService;
 
-    @RequestMapping("/{id}/{productName}")
-    public String findById(@PathVariable("id") String id, @PathVariable("productName") String productName){
+    @RequestMapping("/{id}")
+    public String findById(@PathVariable("id") String id){
 
-        return productService.findById(id,productName);
+        return productService.findById(id);
 
     }
 
