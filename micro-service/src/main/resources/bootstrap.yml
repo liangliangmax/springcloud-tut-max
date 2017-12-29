@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: micro-service
+  cloud:
+    config:
+      uri: http://localhost:8762
+      fail-fast: true
+      #指定连接config服务的用户名和密码，因为config项目是受security保护的
+      password: root
+      username: user
+
+server:
+  port: 8080
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+#可以关闭密码保护
+management:
+  security:
+    enabled: false

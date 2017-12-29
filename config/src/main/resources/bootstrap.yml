@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: config-center
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/shared
+server:
+  port: 8762
+
+eureka:
+    instance:
+        statusPageUrlPath: /info
+        healthCheckUrlPath: /health
+        # docker 部署开启
+#        prefer-ip-address: true
+#        ip-address: 127.0.0.1
+    client:
+        serviceUrl:
+#            defaultZone: http://localhost:8761/eureka/
+                    # docker 部署开启
+            defaultZone: http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka/
+
+#使用security为config服务加密，用户名是user，密码是root
+#如果不添加下面的配置，则在config项目启动过程中会随机生成一个密码
+security:
+  user:
+    password: root
+    name: user

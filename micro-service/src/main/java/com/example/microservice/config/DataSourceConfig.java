@@ -6,6 +6,7 @@ import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.springframework.boot.bind.RelaxedPropertyResolver;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
