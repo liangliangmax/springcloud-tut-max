@@ -1,0 +1,50 @@
+spring:
+    application:
+        name: gate
+    cloud:
+        config:
+            label: master
+            uri: http://localhost:8762
+
+server:
+    port: 8765 #启动端口
+
+ribbon:
+  eureka:
+    enabled: true
+
+eureka:
+    instance:
+        statusPageUrlPath: /info
+        healthCheckUrlPath: /health
+        # docker 部署开启
+#        prefer-ip-address: true
+#        ip-address: 127.0.0.1
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8761/eureka/
+                    # docker 部署开启
+#            defaultZone: http://center:8761/eureka/
+
+gate:
+  ignore:
+    startWith: /static
+    contain: .
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000
+
+#请求和响应GZIP压缩支持
+feign:
+  compression:
+    request:
+      enabled: true
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 2048
+    response:
+      enabled: true

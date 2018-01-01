@@ -1,0 +1,9 @@
+zuul:
+  routes:
+    ui:
+      path: /ui/**
+      serviceId: user-ui
+
+    user-provider:
+      path: /user-provider/**
+      serviceId: user-provider

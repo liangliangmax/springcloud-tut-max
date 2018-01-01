@@ -4,9 +4,12 @@ import com.alibaba.fastjson.JSONObject;
 import com.example.entity.User;
 import com.example.microservice.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.HashMap;
+import java.lang.Exception;
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -47,7 +50,7 @@ public class StudentController {
 
     @RequestMapping(value = "/student/add",method = RequestMethod.POST)
     public int add(@RequestBody User user){
-
+        System.out.println("add 方法");
         return userService.add(user);
     }
 
@@ -56,5 +59,23 @@ public class StudentController {
 
         List<User> list = userService.findByPage(params);
         return JSONObject.toJSONString(list);
+    }
+
+    /**
+     * 这里接受文件参数什么都不需要标注就可以接收到
+     * @param file
+     * @return
+     */
+    @RequestMapping(value = "/student/fileUpload",method = RequestMethod.POST)
+    public String fileUpload(MultipartFile file){
+
+        String filePath="/Users/liang/Desktop/files";
+
+        try {
+            file.transferTo(new File(filePath+"/"+file.getOriginalFilename()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "success";
     }
 }

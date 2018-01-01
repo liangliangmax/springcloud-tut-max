@@ -18,6 +18,8 @@
         <module>product-provider</module>
         <module>micro-api</module>
         <module>product-mapper</module>
+        <module>user-ui</module>
+        <module>zuul-gate</module>
     </modules>
 
     <parent>
