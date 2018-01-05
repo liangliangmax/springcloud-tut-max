@@ -4,11 +4,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("")
+@RequestMapping("/index")
 public class IndexController {
 
-    @RequestMapping("/index")
-    public String index(){
-        return "index";
+
+    @RequestMapping("/student")
+    public String studentIndex(){
+        return "studentIndex";
+    }
+
+    @RequestMapping("/teacher")
+    public String teacherIndex(){
+        return "teacherIndex";
     }
 }

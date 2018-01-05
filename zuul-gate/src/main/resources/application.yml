@@ -7,3 +7,13 @@ zuul:
     user-provider:
       path: /user-provider/**
       serviceId: user-provider
+
+    auth:
+      path: /gate/**
+      serviceId: gate
+
+
+auth:
+  token-header: Authorization
+  secret: 123456
+  expiration: 1000000

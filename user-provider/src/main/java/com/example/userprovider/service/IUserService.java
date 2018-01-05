@@ -1,6 +1,7 @@
 package com.example.userprovider.service;
 
 import com.example.entity.User;
+import com.example.entity.UserForAuth;
 import com.example.userprovider.config.FeignMultipartSupportConfig;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.http.MediaType;
@@ -33,6 +34,11 @@ public interface IUserService {
 
     @RequestMapping(value = "/api/student/page",method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     String findByPage(@RequestBody Map<String,Object> params);
+
+
+    @RequestMapping(value = "/api/student/validate",method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    UserForAuth validate(@RequestParam("username")String username,@RequestParam("password")String password);
+
 
     /**
      * 上传文件现在不好用，要不只能上传文件，但是不能传递对象，要不能传递对象不能上传文件，

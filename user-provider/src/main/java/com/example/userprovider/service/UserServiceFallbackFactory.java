@@ -1,6 +1,7 @@
 package com.example.userprovider.service;
 
 import com.example.entity.User;
+import com.example.entity.UserForAuth;
 import feign.hystrix.FallbackFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -38,6 +39,11 @@ public class UserServiceFallbackFactory implements FallbackFactory<IUserService>
             @Override
             public String findByPage(Map<String, Object> params) {
                 return "分页失败";
+            }
+
+            @Override
+            public UserForAuth validate(String username,String password) {
+                return null;
             }
 
             @Override

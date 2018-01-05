@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>student-login</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
+</head>
+<body>
+<div class="htmleaf-container">
+    <div class="wrapper">
+        <div class="container">
+            <h1>Welcome</h1>
+
+            <form class="form" id="form">
+                <input type="text" id="username" name="username" autofocus placeholder="Username">
+                <input type="password" id="password" name="password" placeholder="Password">
+                <button type="button" id="login-button">Login</button>
+            </form>
+        </div>
+
+        <ul class="bg-bubbles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</div>
+
+<script src="/js/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script>
+    $('#login-button').click(function (event) {
+        $('form').fadeOut(200);
+        $('.wrapper').addClass('form-success');
+    });
+
+
+    $("#login-button").click(function (event) {
+
+        var auth={
+            username: $("#username").val(),
+            password: $("#password").val()
+        }
+
+        $.ajax({
+            cache: false,
+            async: true,
+            url:"/gate/auth/token",
+            type:"post",
+            dataType:"json",
+            data: auth,
+            success:function(result){
+                var token = result.token;
+                console.log(token);
+
+                if(token){
+
+                    var form = $("<form></form>");
+                    form.attr('action', "/ui/index/student");
+                    form.attr('method', 'post');
+                    form.attr('target', '_self');
+
+                        var input1 = $("<input type='hidden' name='Authorization' />");
+                        input1.attr('value', token);
+                        form.append(input1);
+
+                    form.appendTo("body");
+                    form.css('display', 'none');
+                    form.submit();
+
+//                    $.ajax({
+//                        cache: false,
+//                        async: true,
+//                        headers:{
+//                            "Authorization":"Bearer "+token
+//                        },
+//                        url:"/ui/index/student",
+//                        type: "post",
+//
+//                        success:function(result){
+//
+//                            //window.location.href ='/ui/index/student?Authorization=Bearer '+token;
+//
+//
+//
+//                        }
+//                    });
+
+                }
+
+
+            }
+        });
+    });
+</script>
+</body>
+</html>

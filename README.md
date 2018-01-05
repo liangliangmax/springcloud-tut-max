@@ -27,3 +27,9 @@ micro-service为微服务，product-mapper模拟别的jar包中的mapper.xml，p
 在micro-service的DataSourceConfig文件中需要注意一个地方
 bean.setMapperLocations(resolver.getResources("classpath*:mapper/*.xml"));
 一定要写成classpath*，否则可能找不到别的jar包的mapper.xml文件
+
+
+---------------------------------------
+
+两种filter，MyZuulFilter extends ZuulFilter 和 JwtAuthenticationTokenFilter extends OncePerRequestFilter
+zuul中，如果同时配置了这两种filter的话，先执行OncePerRequestFilter，后执行ZuulFilter

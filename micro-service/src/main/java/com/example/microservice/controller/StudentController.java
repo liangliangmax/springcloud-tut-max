@@ -2,6 +2,7 @@ package com.example.microservice.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.example.entity.User;
+import com.example.entity.UserForAuth;
 import com.example.microservice.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -60,6 +61,14 @@ public class StudentController {
         List<User> list = userService.findByPage(params);
         return JSONObject.toJSONString(list);
     }
+
+    @RequestMapping(value = "/student/validate",method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public UserForAuth validate(@RequestParam("username")String username,@RequestParam("password")String password){
+
+        UserForAuth auth = userService.validate(username,password);
+        return auth;
+    }
+
 
     /**
      * 这里接受文件参数什么都不需要标注就可以接收到

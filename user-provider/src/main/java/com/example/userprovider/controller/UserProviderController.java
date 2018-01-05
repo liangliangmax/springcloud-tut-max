@@ -1,13 +1,13 @@
 package com.example.userprovider.controller;
 
 import com.example.entity.User;
+import com.example.entity.UserForAuth;
 import com.example.userprovider.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.lang.Exception;
-import java.io.File;
 import java.util.Map;
 
 @RestController
@@ -55,6 +55,12 @@ public class UserProviderController {
     public String findByPage(@RequestParam Map<String,Object> params){
         return userService.findByPage(params);
 
+    }
+
+    @RequestMapping(value = "/user/validate",method = RequestMethod.POST)
+    public UserForAuth validate(String username,String password){
+
+        return userService.validate(username,password);
     }
 
     /**
