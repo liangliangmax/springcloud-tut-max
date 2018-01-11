@@ -6,7 +6,7 @@ spring:
   cloud:
     loadbalancer:
       retry:
-        enabled: true
+        enabled: true #该参数用来开启重试机制，它默认是关闭的
 
 
 #可以关闭密码保护，如果不配置这个值的话访问localhost:8080/info是不会有任何内容的
@@ -32,7 +32,7 @@ hystrix:
           enabled: false
       isolation:
         thread:
-          timeoutInMilliseconds: 10000
+          timeoutInMilliseconds: 10000 #断路器的超时时间需要大于ribbon的超时时间，不然不会触发重试。
 
 #设置ribbon的超时时间
 #根据如下配置，当访问到故障请求的时候，它会再尝试访问一次当前实例（次数由MaxAutoRetries配置），

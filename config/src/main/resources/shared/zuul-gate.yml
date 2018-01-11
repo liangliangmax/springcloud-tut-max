@@ -11,7 +11,19 @@ eureka:
 
 
 zuul:
+  addHostHeader: true
+  host:
+    maxTotalConnections: 2000
+    maxPerRouteConnections: 50
+    socket-timeout-millis: 6000
+    connect-timeout-millis: 6000
+  semaphore:
+      maxSemaphores: 1000
+
+  ignored-services: '*'  #如果一个服务匹配到了要忽略的列表, 但是它也明确的配置在路由列表中, 将不会被忽略,意思是zuul将忽略所有的路由，但是下面几个还是要路由的
+
   routes:
+
     ui:
       path: /ui/**
       serviceId: user-ui
