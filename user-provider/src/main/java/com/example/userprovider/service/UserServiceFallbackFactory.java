@@ -6,6 +6,7 @@ import feign.hystrix.FallbackFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -52,6 +53,12 @@ public class UserServiceFallbackFactory implements FallbackFactory<IUserService>
 
                 System.out.println("貌似出错了");
                 return "貌似出错了";
+            }
+
+            @Override
+            public String testTimeout() {
+                System.out.println(new Date());
+                return "超时了";
             }
         };
     }

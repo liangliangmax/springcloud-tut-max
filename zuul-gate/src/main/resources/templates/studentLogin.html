@@ -70,7 +70,7 @@
                     form.attr('target', '_self');
 
                         var input1 = $("<input type='hidden' name='Authorization' />");
-                        input1.attr('value', token);
+                        input1.attr('value', "Bearer "+token);
                         form.append(input1);
 
                     form.appendTo("body");

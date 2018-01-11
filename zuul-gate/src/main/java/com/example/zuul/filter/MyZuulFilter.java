@@ -74,7 +74,7 @@ public class MyZuulFilter extends ZuulFilter{
         }
 
         //校验token
-        if (StringUtils.isBlank(token) ) {
+        if (StringUtils.isBlank(token) || jwtTokenUtil.isTokenExpired(token)) {
 
             System.out.println(uri);
 

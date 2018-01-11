@@ -9,6 +9,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
+import org.springframework.context.annotation.Lazy;
 
 /**
  * 在Spring Boot启动类上用@EnableHystrixDashboard注解和@EnableCircuitBreaker注解。
@@ -22,6 +23,7 @@ import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboar
 @EnableFeignClients
 @EnableCircuitBreaker   //
 @EnableHystrixDashboard
+@Lazy(value = false)
 public class UserProviderApplication {
 
 	public static void main(String[] args) {

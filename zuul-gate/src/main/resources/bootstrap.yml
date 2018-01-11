@@ -1,9 +1,17 @@
 spring:
     application:
-        name: gate
+        name: zuul-gate
     thymeleaf:
         mode: LEGACYHTML5
         cache: false
+
+    cloud:
+        config:
+          uri: http://localhost:8762
+          fail-fast: true
+          #指定连接config服务的用户名和密码，因为config项目是受security保护的
+          password: root
+          username: user
 
 server:
     port: 8765 #启动端口
@@ -12,18 +20,6 @@ ribbon:
   eureka:
     enabled: true
 
-eureka:
-    instance:
-        statusPageUrlPath: /info
-        healthCheckUrlPath: /health
-        # docker 部署开启
-#        prefer-ip-address: true
-#        ip-address: 127.0.0.1
-    client:
-        serviceUrl:
-            defaultZone: http://localhost:8761/eureka/
-                    # docker 部署开启
-#            defaultZone: http://center:8761/eureka/
 
 gate:
   ignore:

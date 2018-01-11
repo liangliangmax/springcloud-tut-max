@@ -103,6 +103,8 @@ public class JwtTokenUtil implements Serializable {
                 .setClaims(claims)
                 .setExpiration(generateExpirationDate())
                 .signWith(SignatureAlgorithm.HS512, secret)
+                .setAudience("liang")
+                .setIssuer("liang")
                 .compact();
     }
 

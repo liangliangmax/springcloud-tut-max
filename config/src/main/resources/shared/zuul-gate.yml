@@ -1,0 +1,31 @@
+eureka:
+    instance:
+        statusPageUrlPath: /info
+        healthCheckUrlPath: /health
+        # docker 部署开启
+#        prefer-ip-address: true
+#        ip-address: 127.0.0.1
+    client:
+        serviceUrl:
+            defaultZone: http://localhost:8761/eureka/
+
+
+zuul:
+  routes:
+    ui:
+      path: /ui/**
+      serviceId: user-ui
+
+    user-provider:
+      path: /user-provider/**
+      serviceId: user-provider
+
+    auth:
+      path: /gate/**
+      serviceId: gate
+
+
+auth:
+  token-header: Authorization
+  secret: 123456
+  expiration: 1000000

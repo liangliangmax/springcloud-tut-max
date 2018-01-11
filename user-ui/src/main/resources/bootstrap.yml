@@ -11,13 +11,6 @@ spring:
       time-zone: GMT+8
       default-property-inclusion: non_null
 
-eureka:
-  instance:
-      statusPageUrlPath: /info
-      healthCheckUrlPath: /health
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
 
 
 #可以关闭密码保护，如果不配置这个值的话访问localhost:8080/info是不会有任何内容的

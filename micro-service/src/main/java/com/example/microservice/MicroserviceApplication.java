@@ -6,10 +6,12 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Lazy;
 
 @SpringBootApplication
 @EnableEurekaClient //启动EnableEureka客户端
 @EnableAutoConfiguration
+@Lazy(value = false)
 @MapperScan({"com.example.microservice.mapper","com.example.product.service.mapper"})
 @ComponentScan({"com.example.product.service","com.example.microservice"})
 public class MicroserviceApplication {

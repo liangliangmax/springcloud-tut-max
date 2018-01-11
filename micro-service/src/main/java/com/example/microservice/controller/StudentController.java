@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.lang.Exception;
 import java.io.File;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -85,6 +86,33 @@ public class StudentController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return "success";
+    }
+
+    /**
+     * 默认hystrix超时时间为1s
+     * @return
+     */
+    @RequestMapping(value = "/student/timeout",method = RequestMethod.GET)
+    public String testTimeout(){
+        System.out.println(new Date());
+        try {
+
+            int i=0;
+            while(true){
+                i++;
+                System.out.println("i= "+i);
+                Thread.sleep(1000);
+                if(i==6){
+                    break;
+                }
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return "success";
     }
 }

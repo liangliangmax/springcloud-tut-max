@@ -89,4 +89,9 @@ public class UserProviderController {
         }
         return "success";
     }
+
+    @RequestMapping("/timeout")
+    public String testTimeout(){
+        return userService.testTimeout();
+    }
 }

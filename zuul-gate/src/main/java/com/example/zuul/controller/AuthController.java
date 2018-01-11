@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("/auth")
@@ -21,9 +23,11 @@ public class AuthController {
     private String tokenHeader;
 
     @RequestMapping(value = "/token", method = RequestMethod.POST)
-    public ResponseEntity<?> createAuthenticationToken(@RequestParam("username") String username,@RequestParam("password") String password) throws Exception {
+    public ResponseEntity<?> createAuthenticationToken(@RequestParam("username") String username, @RequestParam("password") String password, HttpServletRequest request, HttpServletResponse response) throws Exception {
         final String token = authService.login(username,password);
 
+        Cookie cookie=new Cookie("Authorization","Bearer "+token);
+        response.addCookie(cookie);
 
         return ResponseEntity.ok(new JwtAuthenticationResponse(token));
     }

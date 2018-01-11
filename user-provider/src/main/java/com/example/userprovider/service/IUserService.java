@@ -51,4 +51,7 @@ public interface IUserService {
     @RequestMapping(value = "/api/student/fileUpload",method = RequestMethod.POST,produces = {MediaType.APPLICATION_JSON_UTF8_VALUE},consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     String fileUpload(@RequestPart(value = "file") MultipartFile file);
 
+    @RequestMapping(value = "/api/student/timeout",method = RequestMethod.GET)
+    String testTimeout();
+
 }
