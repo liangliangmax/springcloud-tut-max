@@ -17,8 +17,9 @@ zuul:
     maxPerRouteConnections: 50
     socket-timeout-millis: 6000
     connect-timeout-millis: 6000
+  #另一种隔离模式的超时时间
   semaphore:
-      maxSemaphores: 1000
+      maxSemaphores: 5000
 
   ignored-services: '*'  #如果一个服务匹配到了要忽略的列表, 但是它也明确的配置在路由列表中, 将不会被忽略,意思是zuul将忽略所有的路由，但是下面几个还是要路由的
 

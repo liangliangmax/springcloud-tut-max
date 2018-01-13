@@ -39,6 +39,8 @@ hystrix:
   command:
     default:
       execution:
+        isolation:
+          strategy: THREAD    #execution.isolation.strategy= THREAD|SEMAPHORE,两种线程隔离机制
         timeout:
           enabled: false
       isolation:
@@ -55,7 +57,7 @@ ribbon:
   OkToRetryOnAllOperations: true    #对所有操作请求都进行重试
   MaxAutoRetriesNextServer: 3       #切换实例的重试次数
   MaxAutoRetries: 1       #对当前实例的重试次数
-  eager-load:
+  eager-load:             #饿加载模式
     enabled: true
   eureka:
-      enabled: true #配置zuul路由时用将此属性设置为false,网上说设置false，但是设置false彻底不走了，被迫改成true，不知道为啥是false
+      enabled: true #配置zuul路由时用将此属性设置为false,网上说设置false，但是设置false彻底不走了，被迫改成true，后来查说设置false是用在ribbon而不使用eureka的环境下才设置false，这里使用eureka，则不能设置false

@@ -28,6 +28,8 @@ hystrix:
   command:
     default:
       execution:
+        isolation:
+          strategy: THREAD    #execution.isolation.strategy= THREAD|SEMAPHORE,两种线程隔离机制
         timeout:
           enabled: false
       isolation:
