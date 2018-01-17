@@ -35,10 +35,10 @@ zuul:
 
     auth:
       path: /gate/**
-      serviceId: gate
+      serviceId: zuul-gate
 
 
 auth:
-  token-header: Authorization
+  token-header: access-token
   secret: 123456
   expiration: 1000000

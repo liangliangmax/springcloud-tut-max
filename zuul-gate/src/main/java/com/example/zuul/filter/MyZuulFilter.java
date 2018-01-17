@@ -46,25 +46,13 @@ public class MyZuulFilter extends ZuulFilter{
         HttpServletRequest request = ctx.getRequest();
         HttpServletResponse response=ctx.getResponse();
 
-        String token = request.getHeader(tokenHeader)!=null?request.getHeader(tokenHeader):request.getParameter(tokenHeader);
-
-        String tokenFromPara=request.getParameter(tokenHeader);
-
-        System.out.println("from header--"+token);
-
-        System.out.println("from para--"+tokenFromPara);
-
-        if(!StringUtils.isBlank(token)){
-            token = token.substring(7);
-        }
-
 
         String uri=request.getRequestURI();
-
 
         System.out.println(uri);
         //设置不拦截的地址
         if(uri.contains("/auth")|| uri.contains("/login")
+                || uri.contains("/ui")
                 || uri.contains("/css")
                 || uri.contains("/js")
                 || uri.endsWith(".css")
@@ -73,26 +61,19 @@ public class MyZuulFilter extends ZuulFilter{
             return null;
         }
 
+        String token = request.getHeader(tokenHeader);
+
+        System.out.println("from header--"+token);
+
+
         //校验token
-        if (StringUtils.isBlank(token) || jwtTokenUtil.isTokenExpired(token)) {
+        if (StringUtils.isBlank(token) || token.equals("null") || jwtTokenUtil.isTokenExpired(token)) {
 
             System.out.println(uri);
 
-            String redirect = "";
-            if(uri.contains("/teacher")){
-                //跳老师登录页
-                redirect="/gate/login/teacher";
-            }else{
-                //跳学生登录页
-                redirect="/gate/login/student";
-
-            }
-
-
             try {
-                response.setStatus(302);
-                response.sendRedirect(redirect);
-            } catch (IOException e) {
+                response.setStatus(401);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 

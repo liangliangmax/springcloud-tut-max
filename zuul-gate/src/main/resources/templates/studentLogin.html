@@ -38,6 +38,7 @@
 
 <script src="/js/jquery-2.1.1.min.js" type="text/javascript"></script>
 <script>
+
     $('#login-button').click(function (event) {
         $('form').fadeOut(200);
         $('.wrapper').addClass('form-success');
@@ -45,7 +46,6 @@
 
 
     $("#login-button").click(function (event) {
-
         var auth={
             username: $("#username").val(),
             password: $("#password").val()
@@ -54,48 +54,32 @@
         $.ajax({
             cache: false,
             async: true,
-            url:"/gate/auth/token",
+            url:"/auth/token",
             type:"post",
             dataType:"json",
             data: auth,
+            ContentType: "application/json",
             success:function(result){
-                var token = result.token;
-                console.log(token);
 
-                if(token){
+                if(result.msg == "success"){
 
-                    var form = $("<form></form>");
-                    form.attr('action', "/ui/index/student");
-                    form.attr('method', 'post');
-                    form.attr('target', '_self');
 
-                        var input1 = $("<input type='hidden' name='Authorization' />");
-                        input1.attr('value', "Bearer "+token);
-                        form.append(input1);
+                    localStorage.setItem("access-token",result.token);
+                    window.location.href="/ui/index/student";
 
-                    form.appendTo("body");
-                    form.css('display', 'none');
-                    form.submit();
-
-//                    $.ajax({
-//                        cache: false,
-//                        async: true,
-//                        headers:{
-//                            "Authorization":"Bearer "+token
-//                        },
-//                        url:"/ui/index/student",
-//                        type: "post",
-//
-//                        success:function(result){
-//
-//                        }
-//                    });
-
+                }else {
+                    alert("用户名密码错误");
+                    console.log("用户名或密码错误");
                 }
 
 
+            },
+            error:function(error){
+                console.log(error);
             }
         });
+
+
     });
 </script>
 </body>

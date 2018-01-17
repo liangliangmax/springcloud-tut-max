@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>pjax-test</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta charset="utf-8">
+
+    <link href="../bootstrap/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
+
+    <script src="../js/jquery-2.1.1.min.js" type="text/javascript"></script>
+
+    <script src="../bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+
+    <script src="../js/jquery.pjax.min.js" type="text/javascript"></script>
+
+    <script src="../js/base.js" type="text/javascript"></script>
+
+    <link href="../bootstrap-table/css/bootstrap-table.min.css" />
+
+    <script src="../bootstrap-table/bootstrap-table.min.js"></script>
+
+
+</head>
+
+<body>
+
+    <div class="container-fluid" id="container">
+        <div class="col-md-12" id="col12">
+
+        </div>
+
+
+    </div>
+
+</body>
+
+<script>
+
+    //加载首页
+    $(document).ready(function () {
+        $.ajax({
+            cache: false,
+            async: true,
+            url:"/user-provider/student/tables",
+            type:"get",
+            success:function(result){
+
+                $("#col12").html(result);
+
+
+            },
+
+        });
+
+
+    });
+
+
+    
+    
+</script>
+
+
+
+</html>

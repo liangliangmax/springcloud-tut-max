@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.lang.Exception;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -93,5 +95,20 @@ public class UserProviderController {
     @RequestMapping("/timeout")
     public String testTimeout(){
         return userService.testTimeout();
+    }
+
+    @RequestMapping("/tables")
+    public List queryTable(){
+
+        List list=new ArrayList();
+
+        list.add("a");
+        list.add("b");
+
+        list.add("c");
+
+        System.out.println("返回了");
+        return list;
+
     }
 }
